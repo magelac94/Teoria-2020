@@ -1,4 +1,10 @@
+def agregarCeros(precios,n):
+    for i in range(len(precios),n):
+        precios.append(0)
+    return precios
 def corteVarilla(precio,n):
+    if(n>len(precio)):
+        agregarCeros(precio,n)
     valores = [ 0 for i in range(n+1)]              #Llenamos de valores 0 una lista de tamaño n+1.
     valores[0] = 0                                  #Ponemos 0 en el primer lugar
     output = list()                                 #Creamos lista de razonamiento, no sirve a efectos del resultado
@@ -24,7 +30,7 @@ def corteVarilla(precio,n):
     return (valores,lista)
 
 precio = [2,3,7,100,2,4,5,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,5,4,12,45,54,152,54,185,5212121,21,54,5774,51,21,21,51,54,21,21,54,54,87,12,18,19,1,5]
-n=45
+n=1000
 tupla = corteVarilla(precio,n)
 
 for i in range(1,len(tupla[0])):
