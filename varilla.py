@@ -7,7 +7,6 @@ def corteVarilla(precio,n):
         agregarCeros(precio,n)
     valores = [ 0 for i in range(n+1)]              #Llenamos de valores 0 una lista de tamaño n+1.
     valores[0] = 0                                  #Ponemos 0 en el primer lugar
-    #output = list()                                 #Creamos lista de razonamiento, no sirve a efectos del resultado
     lista = [ 0 for i in range(n)]
     for i in range(1,n+1):
         max_val = 0
@@ -16,13 +15,10 @@ def corteVarilla(precio,n):
             if(valor_actual>max_val):
                 if(i==1):
                     lista[i-1] = j
-                    #output.append(j)
                 else:
                     if((i-j-2)>=0):
-                        #output.append((j,i-j-2))
                         lista[i-1] = (j,lista[i-j-2])
                     else:
-                        #output.append(j)
                         lista[i-1] = j
                 max_val = valor_actual
         valores[i] = max_val
