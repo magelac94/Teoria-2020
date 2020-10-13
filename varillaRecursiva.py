@@ -1,20 +1,46 @@
+#Pre: que venga ordenado de mayor a menor
+priceSize = [(4,5),(3,5),(2,4),(1,1)]
+clientOrder = 4
+ 
+def corteVarillaRecursivo(priceSize,clientOrder):
+    result = list()
+    for position in range(len(priceSize)):
+        order = clientOrder
+        resultSize = list()
+        cutControl(priceSize,order,position,resultSize)
+        result.append(resultSize)
+    return result
 
-p = [2, 3, 7, 9,10,11,12]
-precios=[]
-j=0
-def varillaRecursiva(n,precios,j):
-    if n <= 1:
-        return n
-    costo = -1
-    for i in range(1, n+1):
-        costo = max(costo, (p[i-1]+ varillaRecursiva(n-i,precios,j))) 
-        print(costo)
-    precios.append(costo)
-    return costo
+def cutControl(priceSize,order,position,resultSize):
+    
+    if(position<=len(priceSize)-1):
+        
+        (size,price) = priceSize[position]
+        if(size>order):
+            cutControl(priceSize,order,position+1,resultSize)
+        else:
+            order=order-size
+            resultSize.append((size,price))
+            if(order!=0):
+                cutControl(priceSize,order,0,resultSize)
+            else:
+                cutControl(priceSize,order,position+1,resultSize)
 
-print (varillaRecursiva(7,precios,j))
-print(precios)
+    else:
+        return
+        
+    
+respuestas = corteVarillaRecursivo(priceSize,clientOrder)
 
-precio = [2,3,7]
-n=4
-valores = [0 for i in range(n+1)]
+if((len(respuestas))>0):
+    for respuesta in respuestas:
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        print("option")
+        print("====")
+        for (size,price) in respuesta:
+            
+            print("-")
+            print("tamano: ")
+            print(size)
+            print("precio: ")
+            print(price)
