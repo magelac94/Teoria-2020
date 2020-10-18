@@ -14,20 +14,20 @@ def corteVarilla(precio,n):
             valor_actual = precio[j] + valores[i-j-1]
             if(valor_actual>max_val):
                 if(i==1):
-                    lista[i-1] = j
+                    lista[i-1] = j+1
                 else:
                     if((i-j-2)>=0):
-                        lista[i-1] = (j,lista[i-j-2])
+                        lista[i-1] = (j+1,lista[i-j-2])
                     else:
-                        lista[i-1] = j
+                        lista[i-1] = j+1
                 max_val = valor_actual
         valores[i] = max_val
             
     return (valores,lista)
 
 precio = [2,3,7,100,2,4]
-n=3
+n=7
 tupla = corteVarilla(precio,n)
 
 for i in range(1,len(tupla[0])):
-    print(str(i) +": Para varilla de: " + str(i) + " metros, su mejor precio sería: " + str(tupla[0][i]) + " cortada de la forma: " + str(tupla[1][i-1]))
+    print((str(i) +": Para varilla de: " + str(i) + " metros, su mejor precio sería: " + str(tupla[0][i]) + " cortada de la forma: " + str(tupla[1][i-1]).replace('(','')).replace(')',''))
